@@ -3,7 +3,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Indicator from './Indicator'
 import { motion } from 'framer-motion'
 
-const paths = ['/', '/one']
+const paths = ['/', '/one', '/two']
 
 const Layout = () => {
   const { pathname } = useLocation()
@@ -14,6 +14,7 @@ const Layout = () => {
     {
       '/': '#ED2939',
       '/one': '#FD6A02',
+      '/two': '#FFDF00',
     }[pathname] || '#ffffff'
 
   const PathList = useMemo(
