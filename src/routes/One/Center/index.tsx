@@ -68,7 +68,7 @@ const Center = () => {
 
   const List = useMemo(
     () => (
-      <ul className='flex w-full justify-center space-x-1'>
+      <ul className='grid w-full grid-cols-5 justify-center space-x-1 '>
         {Array(5)
           .fill(1)
           .map((value, index) => {
@@ -79,7 +79,7 @@ const Center = () => {
                 key={key}
                 layoutId={key}
                 onClick={handleClickButton}
-                className='min-h-[65px] min-w-[65px] rounded-xl bg-white shadow-2xl'
+                className='h-16 rounded-xl bg-white shadow-2xl'
                 animate={animate(index, isOpen)}
               />
             )
