@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Indicator from './Indicator'
 import { motion } from 'framer-motion'
+import Cog from './Cog'
 
 const paths = ['/', '/one', '/two']
 
@@ -14,7 +15,7 @@ const Layout = () => {
     {
       '/': '#ED2939',
       '/one': '#FD6A02',
-      '/two': '#FFDF00',
+      '/two': '#FFCC00',
     }[pathname] || '#ffffff'
 
   const PathList = useMemo(
@@ -44,9 +45,10 @@ const Layout = () => {
 
   return (
     <motion.div
-      className='flex h-screen w-screen flex-col items-center justify-center space-y-4'
+      className='relative flex h-screen w-screen flex-col items-center justify-center space-y-4 overflow-hidden'
       animate={{ backgroundColor }}
     >
+      <Cog />
       <main className='flex h-5/6 items-center space-x-6 '>
         <button type='button' onClick={handleClickPrevPage}>
           <svg
