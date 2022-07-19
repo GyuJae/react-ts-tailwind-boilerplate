@@ -1,8 +1,16 @@
+import Layout from 'components/Layout'
+import { Route, Routes } from 'react-router-dom'
+import Zero from './Zero'
+import One from './One'
+
 const App = () => {
   return (
-    <div className='flex min-h-screen min-w-min items-center justify-center bg-rose-400 font-semibold text-sky-400'>
-      Hello World
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path='/' element={<Zero />} />
+        <Route path='/one' element={<One />} />
+      </Route>
+    </Routes>
   )
 }
 
