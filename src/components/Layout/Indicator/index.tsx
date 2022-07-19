@@ -11,7 +11,7 @@ const Indicator = ({ path, isCurrent }: IProps) => {
   return (
     <li>
       <Link to={path}>
-        <motion.div className={cx('h-3 w-3 rounded-full bg-gray-500')} animate={{ opacity: isCurrent ? 1 : 0.5 }} />
+        <motion.div className={cx('h-3 w-3 rounded-full bg-gray-900')} animate={{ opacity: isCurrent ? 1 : 0.5 }} />
       </Link>
     </li>
   )

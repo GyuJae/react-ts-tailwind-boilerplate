@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { useMemo, useState } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Indicator from './Indicator'
 import { motion } from 'framer-motion'
 
@@ -7,11 +7,13 @@ const paths = ['/', '/one']
 
 const Layout = () => {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const [pathIndex, setPathIndex] = useState<number>(paths.findIndex((item) => item === pathname) || 0)
 
   const backgroundColor =
     {
       '/': '#ED2939',
-      '/one': '#F79862',
+      '/one': '#FD6A02',
     }[pathname] || '#ffffff'
 
   const PathList = useMemo(
@@ -27,13 +29,51 @@ const Layout = () => {
     [pathname]
   )
 
+  const handleClickPrevPage = () => {
+    const changeIndex = pathIndex === 0 ? paths.length - 1 : pathIndex - 1
+    navigate(paths[changeIndex])
+    setPathIndex(changeIndex)
+  }
+
+  const handleClickNextPage = () => {
+    const changeIndex = pathIndex === paths.length - 1 ? 0 : pathIndex + 1
+    navigate(paths[changeIndex])
+    setPathIndex(changeIndex)
+  }
+
   return (
     <motion.div
       className='flex h-screen w-screen flex-col items-center justify-center space-y-4'
       animate={{ backgroundColor }}
     >
-      <main className='h-5/6 w-96 rounded-3xl bg-gray-900 p-4 text-white'>
-        <Outlet />
+      <main className='flex h-5/6 items-center space-x-6 '>
+        <button type='button' onClick={handleClickPrevPage}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            strokeWidth={2}
+          >
+            <path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
+          </svg>
+        </button>
+        <div className='h-full w-96 rounded-3xl bg-gray-900 p-4 text-white'>
+          <Outlet />
+        </div>
+        <button type='button' onClick={handleClickNextPage}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            strokeWidth={2}
+          >
+            <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
+          </svg>
+        </button>
       </main>
       <footer className='flex items-center justify-center'>{PathList}</footer>
     </motion.div>
