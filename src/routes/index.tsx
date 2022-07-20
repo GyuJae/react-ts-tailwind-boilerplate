@@ -1,19 +1,5 @@
-import Layout from 'components/Layout'
-import { Route, Routes } from 'react-router-dom'
-import Zero from './Zero'
-import One from './One'
-import Two from './Two'
-
 const App = () => {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path='/' element={<Zero />} />
-        <Route path='/one' element={<One />} />
-        <Route path='/two' element={<Two />} />
-      </Route>
-    </Routes>
-  )
+  return <div className='flex min-h-screen w-screen items-center justify-center bg-rose-400'>Hello world</div>
 }
 
 export default App
